@@ -1,11 +1,20 @@
 import React from 'react';
+import { useLoaderData } from 'react-router';
+import { addToDB } from '../../Utility/addToDB';
 
-const BookDetails = ({ book, handleRead }) => {
-    const { bookName, author, image, rating, tags, category, review, publisher, totalPages, yearOfPublishing } = book
 
+const BookDetails = () => {
+
+const book = useLoaderData();
+const {bookId, bookName, author, image, rating, tags, category, review, publisher, totalPages, yearOfPublishing } = book;
+
+const handMarkAsRead = (id) => {
+    addToDB(id);
+
+}
 
     return (
-        <div className="bg-base-100 shadow-sm flex">
+        <div className="bg-base-100 shadow-sm flex w-9/12 mx-auto mb-10">
             <div className='bg-gray-300 rounded-2xl'>
                 <figure>
                     <img className='p-15'
@@ -13,17 +22,17 @@ const BookDetails = ({ book, handleRead }) => {
                         alt="Shoes" />
                 </figure>
             </div>
-            <div className="card-body w-2/3">
+            <div className="w-2/3 ml-8">
                 <h2 className="card-title">{bookName}</h2>
-                <p>By: {author}</p>
-                <hr />
-                <p>{category}</p>
-                <hr />
-                <p>{review}</p>
-                <p>{tags.map((tag, index) => <span key={index} className='mr-2 bg-gray-100 px-3 py-1 rounded text-green-500
+                <p className='mb-4'>By: {author}</p>
+                <hr className='mb-4' />
+                <p className='mb-4'>{category}</p>
+                <hr className='mb-4' />
+                <p className='mb-4'>{review}</p>
+                <p className='mb-4'>{tags.map((tag, index) => <span key={index} className='mr-2 bg-gray-100 px-3 py-1 rounded text-green-500
                 '>{tag}</span>)}</p>
-                <hr />
-                <div className='flex'>
+                <hr className='mb-4' />
+                <div className='flex mb-4'>
                     <div>
                         <p className='font-light'>Number of pages:</p>
                         <p className='font-light'>Publisher:</p>
@@ -37,10 +46,10 @@ const BookDetails = ({ book, handleRead }) => {
                         <p>{rating}</p>
                     </div>
                 </div>
-                <hr />
+                <hr className='mb-4' />
                 <div className='flex gap-5'>
-                    <button className='btn btn-outline' onClick={() => handleRead(book)}>Read</button>
-                <button className='btn btn-success'>Wishlist</button>
+                    <button className='btn btn-outline' onClick={() => handMarkAsRead(bookId)}>Mark as Read</button>
+                <button className='btn btn-success'>Add to Wishlist</button>
                 </div>
             </div>
         </div>

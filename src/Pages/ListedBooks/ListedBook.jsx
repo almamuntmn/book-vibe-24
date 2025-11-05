@@ -3,7 +3,7 @@ import React from 'react';
 const ListedBook = (book) => {
     console.log('book', book.book);
 
-const { bookName, author, image, rating, tags, category, publisher } = book.book
+const { bookName, author, image, rating, tags, category, publisher, totalPages } = book.book
 
     return (
         <div className='flex items-center gap-5 border border-gray-200 rounded-2xl p-5 mb-6'>
@@ -16,6 +16,7 @@ const { bookName, author, image, rating, tags, category, publisher } = book.book
                 <p>{category}</p>
                 <p>{rating}</p>
                 <p>{publisher}</p>
+                <p>{totalPages}</p>
                 
             </div>
         </div>
